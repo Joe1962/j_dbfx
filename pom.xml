@@ -19,8 +19,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.5</version>
-            <classifier>all</classifier>
+            <version>42.7.7</version>
         </dependency>
     </dependencies>
     <properties>
