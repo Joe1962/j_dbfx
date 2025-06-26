@@ -4,13 +4,11 @@
  */
 package cu.jsoft.j_dbfxlite;
 
-import static cu.jsoft.j_dbfxlite.DBActions.doQuery;
-import static cu.jsoft.j_dbfxlite.DBActions.doUpdate;
-import static cu.jsoft.j_dbfxlite.DBActions.getMyConn;
 import static cu.jsoft.j_utilsfxlite.global.CONSTS.SPACE;
 import cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +22,8 @@ import java.util.HashMap;
  */
 public abstract class RS {
 //<editor-fold defaultstate="collapsed" desc=" My class-level variables declaration ">
+	protected DBConnectionHandler DBConnHandler;
+	protected Connection MyConn;
 	protected int my_ID;
 	protected ResultSet RST;
 	protected String SQLSelectAll;
@@ -41,6 +41,35 @@ public abstract class RS {
 	protected SimpleDateFormat MyDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	private Boolean isInserting = false;
 //</editor-fold>
+
+	/**
+	 * @return the DBConnHandler
+	 */
+	protected DBConnectionHandler getDBConnHandler() {
+		return DBConnHandler;
+	}
+
+	/**
+	 * @param DBConnHandler the DBConnHandler to set
+	 */
+	public void setDBConnHandler(DBConnectionHandler DBConnHandler) {
+		this.DBConnHandler = DBConnHandler;
+		setMyConn(getDBConnHandler().getMyConn());
+	}
+
+	/**
+	 * @return the MyConn
+	 */
+	protected Connection getMyConn() {
+		return MyConn;
+	}
+
+	/**
+	 * @param MyConn the MyConn to set
+	 */
+	public void setMyConn(Connection MyConn) {
+		this.MyConn = MyConn;
+	}
 
 	public int Count(String SQL, String dbTable) throws SQLException {
 		SQL = SQL.replaceFirst("DBTABLE", dbTable);
@@ -64,8 +93,8 @@ public abstract class RS {
 	public void selectAll(String OrderByString) throws SQLException {
 		String QuerySQL = SQLSelectAll + SPACE + OrderByString;
 		PreparedStatement pstmt;
-		pstmt = DBActions.getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-		RST = DBActions.doQuery(pstmt);
+		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		RST = getDBConnHandler().doQuery(pstmt);
 		RST.first();
 //		echoClassMethodComment(pstmt.toString(), isDebug, false);			// DEBUG...
 	}
@@ -75,7 +104,7 @@ public abstract class RS {
 	public int deleteAll() throws SQLException {
 		String QuerySQL = SQLDeleteAll;
 		PreparedStatement pstmt;
-		pstmt = DBActions.getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		return pstmt.executeUpdate();
 	}
 
@@ -97,14 +126,14 @@ public abstract class RS {
 		}
 		String QuerySQL = SQLSelectAll + SPACE + WhereStatement + SPACE + OrderByString;
 		PreparedStatement pstmt;
-		pstmt = DBActions.getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		int n = 1;
 		if (FuzzySearch) {
 			pstmt.setString(n++, "%" + MyName + "%");
 		} else {
 			pstmt.setString(n++, MyName);
 		}
-		RST = DBActions.doQuery(pstmt);
+		RST = getDBConnHandler().doQuery(pstmt);
 		RST.first();
 		//echoln("RS.selectyStringField: " + pstmt.toString(), isDebug, false);
 	}
@@ -125,9 +154,9 @@ public abstract class RS {
 		String QuerySQL = "DELETE FROM" + SPACE + MyTable + SPACE + WhereStatement;
 
 		PreparedStatement pstmt;
-		pstmt = DBActions.getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		pstmt.setString(1, MyName);
-		return doUpdate(pstmt);
+		return getDBConnHandler().doUpdate(pstmt);
 	}
 
 	public abstract void selectByNameByActiveState(String MyName, String OrderByString, Object ActiveState) throws SQLException;
@@ -185,7 +214,7 @@ public abstract class RS {
 			}
 		}
 
-		setRST(doQuery(pstmt));
+		setRST(getDBConnHandler().doQuery(pstmt));
 		getRST().first();
 		Object tmpObj = getRST().getObject("SeqNext");
 		int tmpInt;
@@ -205,7 +234,7 @@ public abstract class RS {
 	private PreparedStatement getUpdateFieldStatement(String myField) throws SQLException {
 		String QuerySQL = "UPDATE " + SQLTable + " SET " + myField + " = ? WHERE cod = ?";
 		PreparedStatement pstmt;
-		pstmt = DBActions.getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		return pstmt;
 	}
 

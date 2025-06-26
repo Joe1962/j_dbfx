@@ -33,7 +33,7 @@ public class DBActions {
 
 	/**
 	 *
-	 * @param MyDBDriverType
+	 * @param MyDBConnType
 	 * @param MyDBDriver
 	 * @param MyDBServer
 	 * @param MyDBPort
@@ -42,24 +42,24 @@ public class DBActions {
 	 * @param MyDBPass
 	 * @throws SQLException
 	 */
-	public static void dbConnectServer(String MyDBDriverType, String MyDBDriver, String MyDBServer, int MyDBPort, String MyDBName, String MyDBUser, String MyDBPass) throws SQLException {
+	public static void dbConnectServer(String MyDBConnType, String MyDBDriver, String MyDBServer, int MyDBPort, String MyDBName, String MyDBUser, String MyDBPass) throws SQLException {
 	// Connect to the database server:
-		String sMyConn = MyDBDriverType + ":" + MyDBDriver + "://" + MyDBServer + ":" + String.valueOf(MyDBPort) + "/" + MyDBName;
+		String sMyConn = MyDBConnType + ":" + MyDBDriver + "://" + MyDBServer + ":" + String.valueOf(MyDBPort) + "/" + MyDBName;
 		MyConn = DriverManager.getConnection(sMyConn, MyDBUser, MyDBPass);
    }
 
 	/**
 	 *
-	 * @param MyDBDriverType
+	 * @param MyDBConnType
 	 * @param MyDBDriver
 	 * @param MyDBPath
 	 * @param MyDBUser
 	 * @param MyDBPass
 	 * @throws SQLException
 	 */
-	public static void dbConnectFileSystem(String MyDBDriverType, String MyDBDriver, String MyDBPath, String MyDBUser, String MyDBPass) throws SQLException {
+	public static void dbConnectFileSystem(String MyDBConnType, String MyDBDriver, String MyDBPath, String MyDBUser, String MyDBPass) throws SQLException {
 	// Connect to the database file:
-		String sMyConn = MyDBDriverType + ":" + MyDBDriver + ":directory:/" + MyDBPath + "/";
+		String sMyConn = MyDBConnType + ":" + MyDBDriver + ":directory:/" + MyDBPath + "/";
 		//echoln(sMyConn, false, false);			// DEBUG...
 		MyConn = DriverManager.getConnection(sMyConn, MyDBUser, MyDBPass);
 	}

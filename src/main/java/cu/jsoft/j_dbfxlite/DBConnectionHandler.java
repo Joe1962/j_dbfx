@@ -34,7 +34,7 @@ public class DBConnectionHandler {
 
 	/**
 	 *
-	 * @param MyDBDriverType
+	 * @param MyDBConnType
 	 * @param MyDBDriver
 	 * @param MyDBPath
 	 * @param MyDBServer
@@ -44,34 +44,37 @@ public class DBConnectionHandler {
 	 * @param MyDBPass
 	 * @throws SQLException
 	 */
-	public void dbConnectServer(String MyDBDriverType, String MyDBDriver, String MyDBPath, String MyDBServer, int MyDBPort, String MyDBName, String MyDBUser, String MyDBPass) throws SQLException {
+	public void dbConnectServer(String MyDBConnType, String MyDBDriver, String MyDBPath, String MyDBServer, int MyDBPort, String MyDBName, String MyDBUser, String MyDBPass) throws SQLException {
 		if (null == MyDBDriver) {
 			
-		} else // Connect to the database server:
-		switch (MyDBDriver) {
-			case "postgresql":
-				String sMyConn = MyDBDriverType + ":" + MyDBDriver + "://" + MyDBServer + ":" + String.valueOf(MyDBPort) + "/" + MyDBName;
-				MyConn = DriverManager.getConnection(sMyConn, MyDBUser, MyDBPass);
-				break;
-			case "derby":
-				break;
-			default:
-				break;
+		} else {
+			
+			// Connect to the database server:
+			switch (MyDBDriver) {
+				case "postgresql":
+					String sMyConn = MyDBConnType + ":" + MyDBDriver + "://" + MyDBServer + ":" + String.valueOf(MyDBPort) + "/" + MyDBName;
+					MyConn = DriverManager.getConnection(sMyConn, MyDBUser, MyDBPass);
+					break;
+				case "derby":
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
 	/**
 	 *
-	 * @param MyDBDriverType
+	 * @param MyDBConnType
 	 * @param MyDBDriver
 	 * @param MyDBPath
 	 * @param MyDBUser
 	 * @param MyDBPass
 	 * @throws SQLException
 	 */
-	public void dbConnectFileSystem(String MyDBDriverType, String MyDBDriver, String MyDBPath, String MyDBUser, String MyDBPass) throws SQLException {
+	public void dbConnectFileSystem(String MyDBConnType, String MyDBDriver, String MyDBPath, String MyDBUser, String MyDBPass) throws SQLException {
 		// Connect to the database file:
-		String sMyConn = MyDBDriverType + ":" + MyDBDriver + ":directory:/" + MyDBPath + "/";
+		String sMyConn = MyDBConnType + ":" + MyDBDriver + ":directory:/" + MyDBPath + "/";
 		//echoln(sMyConn, false, false);			// DEBUG...
 		MyConn = DriverManager.getConnection(sMyConn, MyDBUser, MyDBPass);
 	}
