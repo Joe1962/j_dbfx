@@ -206,6 +206,51 @@ public class DBConnectionHandler {
 		MyConn = aMyConn;
 	}
 
+	public boolean getDB() throws SQLException {
+		String QuerySQL = "SELECT datname FROM pg_database AS db;";
+		PreparedStatement pstmt = MyConn.prepareStatement(QuerySQL);
+		ResultSet rst = pstmt.executeQuery();
+		ArrayList<String> lstBD = new ArrayList<>();
+
+		int n = 1;
+		while (rst.next()) {
+			String db = rst.getString("db");
+			if (db.isEmpty() || db.equals("postgres") || db.equals("template0") || db.equals("template1")) {
+			} else {
+				lstBD.add(db);
+				if (rst.isLast() && n == 1) {
+				} else {
+				}
+				n++;
+			}
+		}
+
+		return !lstBD.isEmpty();
+	}
+
+	public boolean isTable(String DBName, String SchemaName, String TableName) throws SQLException {
+		ArrayList<String> FailList = new ArrayList<>();
+		PreparedStatement pstmt;
+		ResultSet RST;
+
+		// First get all columns to compare counts:
+		String QuerySQLAllColumns = "SELECT "
+			+ "table_name "
+			+ "FROM information_schema.columns "
+			+ "WHERE table_catalog = ? "
+			+ "AND table_schema = ? "
+			+ "AND table_name = ? ";
+		pstmt = MyConn.prepareStatement(QuerySQLAllColumns, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		int n = 1;
+		pstmt.setString(n++, DBName);
+		pstmt.setString(n++, SchemaName);
+		pstmt.setString(n++, TableName);
+		RST = doQuery(pstmt);
+		boolean retBool = RST.last();
+
+		return retBool;
+	}
+
 	/**
 	 *
 	 * @param DBName - The name of the database containing the table to be

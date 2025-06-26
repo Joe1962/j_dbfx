@@ -15,6 +15,17 @@ public class TYP_DBStructCheck {
 	private String data_type;
 	private int character_maximum_length;
 
+	public TYP_DBStructCheck() {
+	}
+
+	public TYP_DBStructCheck(String column_name, String column_default, String is_nullable, String data_type, int character_maximum_length) {
+		this.column_name = column_name;
+		this.column_default = column_default;
+		this.is_nullable = is_nullable;
+		this.data_type = data_type;
+		this.character_maximum_length = character_maximum_length;
+	}
+
 	/**
 	 * @return the column_name
 	 */
