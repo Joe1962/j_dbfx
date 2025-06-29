@@ -253,6 +253,18 @@ public class DBConnectionHandler {
 		return retBool;
 	}
 
+	public boolean isExtension(String extName) throws SQLException {
+		int retInt = 0;
+		String QuerySQL = "SELECT COUNT(extname) FROM pg_catalog.pg_extension WHERE extname = ?;";
+		PreparedStatement pstmt = getMyConn().prepareStatement(QuerySQL);
+		pstmt.setString(1, extName);
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()){
+			retInt = rs.getInt(1);
+		}
+		return retInt > 0;
+	}
+
 	/**
 	 *
 	 * @param DBName - The name of the database containing the table to be
