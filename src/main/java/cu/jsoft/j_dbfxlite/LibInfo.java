@@ -11,8 +11,9 @@ package cu.jsoft.j_dbfxlite;
 public class LibInfo {
 	// Lib constants:
 	private static final String TITLE = "j_dbfx-lite";
-	private static final String VERSION = "1.0.1";
-	private static final String BUILD = "250701.01";
+	private static final String VERSION = "1.0.2";
+	private static final String BUILD = "250704.01";
+
 
 
 	/**
