@@ -10,7 +10,6 @@ import static cu.jsoft.j_utilsfxlite.subs.SUB_PopupsFX.SimpleDialog;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsFXResources.getResourceImage;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications.echoln;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -69,7 +68,8 @@ public class SQLx {
 			echoln("Unknown PG SQL Exception. Detalles: " + e.getMessage(), DebugMode, false);
 			String strExtraInfo = setupExtraInfoText(callerInfo, true);
 			// TODO: old webview stuff to convert...
-			doDLGSQLCritErrUnMapped("ERROR SQL: " + e.getSQLState(), e.getLocalizedMessage(), strExtraInfo + Arrays.toString(e.getStackTrace()));
+			//doDLGSQLCritErrUnMapped("ERROR SQL: " + e.getSQLState(), e.getLocalizedMessage(), strExtraInfo + Arrays.toString(e.getStackTrace()));
+			doDLGSQLCritErrText("ERROR SQL: " + e.getSQLState(), e.getLocalizedMessage(), strExtraInfo);
 		} else {
 			if (MyJDBCException.isRetry()) {
 				String strExtraInfo = setupExtraInfoText(callerInfo, false);
