@@ -38,6 +38,8 @@ public abstract class RS {
 	protected String SQLSelectLastByPK;
 	protected String SQLSelectSequential;
 	protected String SQLTable;
+	protected String SQLAppendRow;
+	protected String SQLUpdateRow;
 	protected SimpleDateFormat MyDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	private Boolean isInserting = false;
 //</editor-fold>
