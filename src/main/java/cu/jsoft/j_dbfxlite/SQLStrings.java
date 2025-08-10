@@ -24,6 +24,16 @@ public abstract class SQLStrings {
 
 	public abstract String getSQLUpdateRow();
 
+	public abstract String getSQLTotalsByPOSDate();
+
+	public abstract String getSQLDiasVentas();
+
+	public abstract String getSQLLastSalesDate();
+
+	public String getSQLCountByPOS(int SelectedPOS) {
+		return "SELECT COUNT(id) FROM DBTABLE WHERE id_pos = " + SelectedPOS + ";";
+	}
+
 	public String getSQLCountUpserted() {
 		return "SELECT \n" +
 			"	COUNT(inserted) FILTER (WHERE inserted) AS num_inserted, \n" +
@@ -38,5 +48,13 @@ public abstract class SQLStrings {
 	public abstract String getSQLUpsert(String DBVersionParam);
 
 	public abstract String getSQLSelectByUpserted_PKAndIntField();
+
+	public abstract String getSQLUpdateRowIDPayment();
+
+	public abstract String getSQLSelectByPOS();
+
+	public abstract String getSQLSelectByPOSDate();
+
+	public abstract String getSQLSelectByPOSDateOrphans();
 
 }
