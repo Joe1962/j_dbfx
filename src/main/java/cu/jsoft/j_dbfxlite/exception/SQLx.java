@@ -28,15 +28,11 @@ public class SQLx {
 	private Font errContentFont;
 	private TYP_ConfigDBJSON theDBConfig;
 
-
-
 	public SQLx(TYP_ConfigDBJSON theDBConfig, Font errHeaderFont, Font errContentFont) {
 		this.theDBConfig = theDBConfig;
 		this.errHeaderFont = errHeaderFont;
 		this.errContentFont = errContentFont;
 	}
-
-
 
 	public void handleException(Exception e, int excType, String strDBTable, boolean DebugMode) {
 		if (e.getClass() == SQLException.class) {
