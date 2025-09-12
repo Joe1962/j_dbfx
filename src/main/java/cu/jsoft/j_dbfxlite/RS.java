@@ -86,8 +86,8 @@ public abstract class RS {
 
 	public void selectFreeStyle(String SQL) throws SQLException {
 		PreparedStatement pstmt = getMyConn().prepareStatement(SQL, 
-			ResultSet.TYPE_SCROLL_INSENSITIVE, 
-			ResultSet.CONCUR_UPDATABLE);
+		ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 		RST = pstmt.executeQuery();
 		RST.first();
 	}

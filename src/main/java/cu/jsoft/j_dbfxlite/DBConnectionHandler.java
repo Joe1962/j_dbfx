@@ -265,6 +265,22 @@ public class DBConnectionHandler {
 		return retInt > 0;
 	}
 
+	public ResultSet selectFreeStyle(String SQL) throws SQLException {
+		PreparedStatement pstmt = getMyConn().prepareStatement(SQL, 
+		ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
+		ResultSet RST = pstmt.executeQuery();
+		RST.first();
+		return RST;
+	}
+
+	public boolean appendFreeStyle(String SQL) throws SQLException {
+		PreparedStatement pstmt = getMyConn().prepareStatement(SQL);
+		return pstmt.executeUpdate() == 1;
+	}
+
+
+
 	/**
 	 *
 	 * @param DBName - The name of the database containing the table to be
