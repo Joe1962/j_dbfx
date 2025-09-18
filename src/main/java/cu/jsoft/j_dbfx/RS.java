@@ -22,6 +22,7 @@ import java.util.HashMap;
  */
 public abstract class RS {
 //<editor-fold defaultstate="collapsed" desc=" My class-level variables declaration ">
+	private String dbTable;
 	protected DBConnectionHandler DBConnHandler;
 	protected Connection MyConn;
 	protected int my_ID;
@@ -29,7 +30,7 @@ public abstract class RS {
 	protected String SQLSelectAll;
 	protected String SQLDeleteAll;
 	protected String SQLSelectByDate;
-	protected String SQLSelectByPK;
+	protected String SQLSelectByID;
 	protected String SQLSelectByMaster;
 	protected String SQLSelectByName;
 	protected String SQLSelectPrevByPK;
@@ -101,8 +102,6 @@ public abstract class RS {
 //		echoClassMethodComment(pstmt.toString(), isDebug, false);			// DEBUG...
 	}
 
-	public abstract void selectByDate(String OrderByString, Object MyMaster) throws SQLException;
-
 	public int deleteAll() throws SQLException {
 		String QuerySQL = SQLDeleteAll;
 		PreparedStatement pstmt;
@@ -110,11 +109,7 @@ public abstract class RS {
 		return pstmt.executeUpdate();
 	}
 
-	public abstract void selectByPK(Object MyPK) throws SQLException;
-
-	public abstract void selectByMaster(String OrderByString, Object MyMaster) throws SQLException;
-
-	public void selectyStringField(String MyName, String MyNameField, boolean FuzzySearch, boolean CaseSensitive, String OrderByString) throws SQLException {
+	public void selectByStringField(String MyName, String MyNameField, boolean FuzzySearch, boolean CaseSensitive, String OrderByString) throws SQLException {
 		if (MyName == null || MyNameField == null) {
 			return;
 		}
@@ -160,8 +155,6 @@ public abstract class RS {
 		pstmt.setString(1, MyName);
 		return getDBConnHandler().doUpdate(pstmt);
 	}
-
-	public abstract void selectByNameByActiveState(String MyName, String OrderByString, Object ActiveState) throws SQLException;
 
 	public abstract Object getCurrent() throws SQLException;
 
@@ -233,66 +226,11 @@ public abstract class RS {
 
 	public abstract boolean updateRow(Object MyRow, Object WhereParam) throws SQLException;
 
-	private PreparedStatement getUpdateFieldStatement(String myField) throws SQLException {
-		String QuerySQL = "UPDATE " + SQLTable + " SET " + myField + " = ? WHERE cod = ?";
-		PreparedStatement pstmt;
-		pstmt = getMyConn().prepareStatement(QuerySQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-		return pstmt;
-	}
-
-	public int updateField(String myField, Date myValue) throws SQLException {
-		PreparedStatement pstmt = getUpdateFieldStatement(myField);
-		pstmt.setDate(1, myValue);
-		pstmt.setInt(2, my_ID);
-		if (getRST() != null) {
-			String QuerySQL = getRST().getStatement().toString();
-		}
+	public int deleteRowBySingleField(String byField, String sIdent) throws SQLException {
+		String QuerySQL = "DELETE FROM " + dbTable + " WHERE " + byField + " = " + sIdent + ";";
+		PreparedStatement pstmt = getMyConn().prepareStatement(QuerySQL);
 		return pstmt.executeUpdate();
 	}
-
-	public int updateField(String myField, int myValue) throws SQLException {
-		PreparedStatement pstmt = getUpdateFieldStatement(myField);
-		pstmt.setInt(1, myValue);
-		pstmt.setInt(2, my_ID);
-		if (getRST() != null) {
-			String QuerySQL = getRST().getStatement().toString();
-		}
-		return pstmt.executeUpdate();
-	}
-
-	public int updateField(String myField, BigDecimal myValue) throws SQLException {
-		PreparedStatement pstmt = getUpdateFieldStatement(myField);
-		pstmt.setBigDecimal(1, myValue);
-		pstmt.setInt(2, my_ID);
-		if (getRST() != null) {
-			String QuerySQL = getRST().getStatement().toString();
-		}
-		return pstmt.executeUpdate();
-	}
-
-	public int getIntValue(String fieldname) throws SQLException {
-		return RST.getInt(fieldname);
-	}
-
-	public Date getDateValue(String fieldname) throws SQLException {
-		return RST.getDate(fieldname);
-	}
-
-	public BigDecimal getCurrencyValue(String fieldname) throws SQLException {
-		return RST.getBigDecimal(fieldname);
-	}
-
-	public abstract int deleteRow() throws SQLException;
-
-	public abstract boolean deleteRowByID(int MyID) throws SQLException;
-
-	public abstract boolean deleteRowByID(String MyID) throws SQLException;
-
-	public abstract int deleteRowByID(BigInteger MyID) throws SQLException;
-
-	public abstract int deleteRowsByZeroQuant() throws SQLException;
-
-	public abstract int deleteByMaster() throws SQLException;
 
 	public int rsCount() {
 		// Remember to use a select method first to set up the recordset...
@@ -330,69 +268,23 @@ public abstract class RS {
 		return RST;
 	}
 
+	// TODO: Can this be private...???
 	public void setRST(ResultSet RST) {
 		this.RST = RST;
 	}
 
-	public Boolean getInserting() {
-		return isInserting;
+	/**
+	 * @return the dbTable
+	 */
+	public String getDbTable() {
+		return dbTable;
 	}
 
-	public void setInserting(Boolean isInserting) {
-		this.isInserting = isInserting;
-	}
-
-	public final class TYP_RetInsertOrUpdate {
-
-		private int RowsAffected;
-		private boolean InsertSuccessful;
-		private boolean UpdateSuccessful;
-
-		/**
-		 * @return the RowsAffected
-		 */
-		public int getRowsAffected() {
-			return RowsAffected;
-		}
-
-		/**
-		 * @param aRowsAffected the RowsAffected to set
-		 */
-		public void setRowsAffected(int aRowsAffected) {
-			RowsAffected = aRowsAffected;
-		}
-
-		/**
-		 * @return the InsertSuccessful
-		 */
-		public boolean isInsertSuccessful() {
-			return InsertSuccessful;
-		}
-
-		/**
-		 * @param aInsertSuccessful the InsertSuccessful to set
-		 */
-		public void setInsertSuccessful(boolean aInsertSuccessful) {
-			InsertSuccessful = aInsertSuccessful;
-		}
-
-		/**
-		 * @return the UpdateSuccessful
-		 */
-		public boolean isUpdateSuccessful() {
-			return UpdateSuccessful;
-		}
-
-		/**
-		 * @param aUpdateSuccessful the UpdateSuccessful to set
-		 */
-		public void setUpdateSuccessful(boolean aUpdateSuccessful) {
-			UpdateSuccessful = aUpdateSuccessful;
-		}
-	}
-
-	public void setMy_ID(int id) {
-		this.my_ID = id;
+	/**
+	 * @param dbTable the dbTable to set
+	 */
+	public void setDbTable(String dbTable) {
+		this.dbTable = dbTable;
 	}
 
 }

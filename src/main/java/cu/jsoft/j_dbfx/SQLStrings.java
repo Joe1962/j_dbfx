@@ -12,10 +12,6 @@ public abstract class SQLStrings {
 
 	public abstract String getSQLSelectAll();
 
-	public abstract String getSQLSelectByPK();
-
-	public abstract String getSQLSelectByMaster();
-
 	public abstract String getSQLSelectByname();
 
 	public abstract String getSQLDeleteAll();
