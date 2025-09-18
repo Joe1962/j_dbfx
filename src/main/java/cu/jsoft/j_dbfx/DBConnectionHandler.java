@@ -1,12 +1,12 @@
 /*
  * Copyright Joe1962
  */
-package cu.jsoft.j_dbfxlite;
+package cu.jsoft.j_dbfx;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
-import cu.jsoft.j_dbfxlite.types.TYP_DBStructCheck;
+import cu.jsoft.j_dbfx.types.TYP_DBStructCheck;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications.echoClassMethodComment;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications.echoln;
 import java.io.FileNotFoundException;

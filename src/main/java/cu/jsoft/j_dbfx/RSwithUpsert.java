@@ -2,9 +2,9 @@
  * Copyright Joe1962
  * https://github.com/Joe1962
  */
-package cu.jsoft.j_dbfxlite;
+package cu.jsoft.j_dbfx;
 
-import cu.jsoft.j_dbfxlite.types.TYPUpsertCounts;
+import cu.jsoft.j_dbfx.types.TYPUpsertCounts;
 import java.sql.SQLException;
 
 /**

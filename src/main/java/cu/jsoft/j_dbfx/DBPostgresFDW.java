@@ -1,7 +1,7 @@
 /*
  * Copyright Joe1962
  */
-package cu.jsoft.j_dbfxlite;
+package cu.jsoft.j_dbfx;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

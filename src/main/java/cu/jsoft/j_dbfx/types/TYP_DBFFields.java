@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cu.jsoft.j_dbfxlite.types;
+package cu.jsoft.j_dbfx.types;
 
 /**
  *

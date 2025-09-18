@@ -2,7 +2,7 @@
  * Copyright Joe1962
  * https://github.com/Joe1962
  */
-package cu.jsoft.j_dbfxlite;
+package cu.jsoft.j_dbfx;
 
 import static cu.jsoft.j_utilsfxlite.global.CONSTS.SPACE;
 import cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications;

@@ -2,9 +2,9 @@
  * Copyright Joe1962
  * https://github.com/Joe1962
  */
-package cu.jsoft.j_dbfxlite.exception;
+package cu.jsoft.j_dbfx.exception;
 
-import cu.jsoft.j_dbfxlite.types.TYP_ConfigDBJSON;
+import cu.jsoft.j_dbfx.types.TYP_ConfigDBJSON;
 import static cu.jsoft.j_utilsfxlite.global.CONSTS.NEW_LINE;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_PopupsFX.SimpleDialog;
 import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsFXResources.getResourceImage;

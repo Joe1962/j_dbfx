@@ -1,7 +1,7 @@
 /*
  * Copyright Joe1962
  */
-package cu.jsoft.j_dbfxlite.exception;
+package cu.jsoft.j_dbfx.exception;
 
 /**
  *
