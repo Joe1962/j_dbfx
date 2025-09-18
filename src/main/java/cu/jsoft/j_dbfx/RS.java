@@ -4,12 +4,9 @@
  */
 package cu.jsoft.j_dbfx;
 
-import static cu.jsoft.j_utilsfxlite.global.CONSTS.SPACE;
-import cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import static cu.jsoft.j_utilsfx.global.CONSTS.SPACE;
+import cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

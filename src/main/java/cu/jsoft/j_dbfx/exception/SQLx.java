@@ -5,10 +5,10 @@
 package cu.jsoft.j_dbfx.exception;
 
 import cu.jsoft.j_dbfx.types.TYP_ConfigDBJSON;
-import static cu.jsoft.j_utilsfxlite.global.CONSTS.NEW_LINE;
-import static cu.jsoft.j_utilsfxlite.subs.SUB_PopupsFX.SimpleDialog;
-import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsFXResources.getResourceImage;
-import static cu.jsoft.j_utilsfxlite.subs.SUB_UtilsNotifications.echoln;
+import static cu.jsoft.j_utilsfx.global.CONSTS.NEW_LINE;
+import static cu.jsoft.j_utilsfx.subs.SUB_PopupsFX.SimpleDialog;
+import static cu.jsoft.j_utilsfx.subs.SUB_UtilsFXResources.getResourceImage;
+import static cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications.echoln;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.application.Platform;
