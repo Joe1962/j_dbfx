@@ -1,0 +1,18 @@
+TODO j_dbfx-lite:
+
+*******************************************************
+                        TODO:
+*******************************************************
+
+PRIORITY HIGH:
+	Review and simplify RS.
+	SQLx.handleExceptionPG: outputs the caller class and line number, not where the exception really ocurred.
+
+PRIORITY MID:
+
+
+LONGTERM:
+
+
+TODO PERMANENT:
+
