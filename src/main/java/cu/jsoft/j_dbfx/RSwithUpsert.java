@@ -21,14 +21,4 @@ public abstract class RSwithUpsert extends RS {
 
 	public abstract TYPUpsertCounts Upsert(int SelectedPOS, String DBVersionParam) throws SQLException;
 
-
-
-	// Additional methods that should be in RS, but would cause too much trouble right now:
-
-	public abstract void selectByPOS(String OrderByString, Object MyMaster) throws SQLException;
-
-	public abstract void selectByPOSDate(String OrderByString, Object MyMaster) throws SQLException;
-
-	public abstract void selectByPOSDateOrphans(String OrderByString, Object MyMaster) throws SQLException;
-
 }

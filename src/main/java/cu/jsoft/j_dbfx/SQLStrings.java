@@ -47,10 +47,4 @@ public abstract class SQLStrings {
 
 	public abstract String getSQLUpdateRowIDPayment();
 
-	public abstract String getSQLSelectByPOS();
-
-	public abstract String getSQLSelectByPOSDate();
-
-	public abstract String getSQLSelectByPOSDateOrphans();
-
 }
