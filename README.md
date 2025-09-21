@@ -1,4 +1,4 @@
-j_dbfx-lite
+j_dbfx
 
 Database access support library for JavaFX applications.
 
