@@ -1,5 +1,8 @@
 CHANGELOG j_dbfx-lite:
 
+251006:
+	Added class DBJDBCUtils.
+	Added method DBJDBCUtils.getJDBCBooleanArraySafe.
 250918:
 	Added folder docs.
 	Moved TODO to docs.
