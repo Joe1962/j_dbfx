@@ -14,6 +14,10 @@ import java.sql.SQLException;
 public class DBJDBCUtils {
 	
 	public Boolean[] getJDBCBooleanArraySafe(ResultSet RST, String columnName) throws SQLException {
+		if (RST == null || columnName == null) {
+			return null;
+		}
+
 		Object arrayObj = RST.getObject(columnName);
 		return (arrayObj instanceof java.sql.Array) ? (Boolean[]) ((java.sql.Array) arrayObj).getArray() : null;
 	}
