@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 public abstract class RS {
 //<editor-fold defaultstate="collapsed" desc=" My class-level variables declaration ">
-	private String dbTable;
+	protected String dbTable;
 	protected DBConnectionHandler DBConnHandler;
 	protected Connection MyConn;
 	protected int my_ID;

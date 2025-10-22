@@ -1,5 +1,8 @@
 CHANGELOG j_dbfx-lite:
 
+251022:
+	LibInfo: fixed String TITLE.
+	j_dbfx.SQLStrings: removed getSQLCountUpserted, getSQLClearUpserted, handled in RSwithUpsert.
 251006:
 	Added class DBJDBCUtils.
 	Added method DBJDBCUtils.getJDBCBooleanArraySafe.
