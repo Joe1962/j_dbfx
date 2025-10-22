@@ -41,8 +41,6 @@ public abstract class SQLStrings {
 		return "UPDATE DBTABLE SET inserted = false, updated = false;";
 	}
 
-	public abstract String getSQLUpsert(String DBVersionParam);
-
 	public abstract String getSQLSelectByUpserted_PKAndIntField();
 
 	public abstract String getSQLUpdateRowIDPayment();
