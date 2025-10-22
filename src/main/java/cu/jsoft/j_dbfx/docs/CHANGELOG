@@ -1,6 +1,8 @@
 CHANGELOG j_dbfx-lite:
 
 251022:
+	RSwithUpsert: moved setting SQL string from constructor to corresponding methods, so dbTable is valid.
+	RSwithUpsert: Removed "public." from SQL strings, it comes in dbTable var.
 	RSwithUpsert.Upsert: Removed String DBVersionParam.
 	j_dbfx.SQLStrings: removed getSQLUpsert, handled in RSwithUpsert implementations.
 	LibInfo: fixed String TITLE.
