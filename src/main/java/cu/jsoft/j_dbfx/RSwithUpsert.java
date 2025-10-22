@@ -49,7 +49,7 @@ public abstract class RSwithUpsert extends RS {
 		return pstmt.executeUpdate() == 1;
 	}
 
-	public TYPUpsertCounts Upsert(int SelectedPOS, String DBVersionParam) throws SQLException {
+	public TYPUpsertCounts Upsert(int SelectedPOS) throws SQLException {
 		//SQL_Upsert = SQL_Upsert.replaceFirst("PLACEHOLDER_dbTable", dbTable);
 		SQL_Upsert = SQL_Upsert.replaceFirst("PLACEHOLDER_SelectedPOS", String.valueOf(SelectedPOS));
 
