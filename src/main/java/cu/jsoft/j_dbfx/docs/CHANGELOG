@@ -1,6 +1,7 @@
 CHANGELOG j_dbfx-lite:
 
 251022:
+	RSwithUpsert.Upsert: Removed String DBVersionParam.
 	j_dbfx.SQLStrings: removed getSQLUpsert, handled in RSwithUpsert implementations.
 	LibInfo: fixed String TITLE.
 	j_dbfx.SQLStrings: removed getSQLCountUpserted, getSQLClearUpserted, handled in RSwithUpsert.
