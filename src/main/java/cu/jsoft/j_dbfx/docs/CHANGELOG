@@ -1,5 +1,7 @@
-CHANGELOG j_dbfx-lite:
+CHANGELOG j_dbfx:
 
+251103:
+	Deprecated use of cu.jsoft.j_dbfx.RSwithUpsert, cu.jsoft.j_dbfx.TYPUpsertCounts.
 251022:
 	RSwithUpsert: moved setting SQL string from constructor to corresponding methods, so dbTable is valid.
 	RSwithUpsert: Removed "public." from SQL strings, it comes in dbTable var.
