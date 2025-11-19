@@ -5,7 +5,9 @@
 package cu.jsoft.j_dbfx;
 
 import static cu.jsoft.j_utilsfx.global.CONSTS.SPACE;
+import cu.jsoft.j_utilsfx.global.FLAGS;
 import cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications;
+import static cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications.echoClassMethodComment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,6 +71,21 @@ public abstract class RS {
 	 */
 	public void setMyConn(Connection MyConn) {
 		this.MyConn = MyConn;
+	}
+
+	protected String prepSQL(String SQL, String OrderByString) {
+		if (!OrderByString.isBlank()) {
+			return SQL + " " + OrderByString + ";";
+		} else {
+			return SQL;
+		}
+	}
+
+	protected void runSQLQuery(PreparedStatement pstmt) throws SQLException {
+		setRST(getDBConnHandler().doQuery(pstmt));
+		getRST().first();
+		String QuerySQL = getRST().getStatement().toString();
+		echoClassMethodComment(QuerySQL, FLAGS.isDEBUG(), false);			// DEBUG...
 	}
 
 	public int Count(String SQL, String dbTable) throws SQLException {

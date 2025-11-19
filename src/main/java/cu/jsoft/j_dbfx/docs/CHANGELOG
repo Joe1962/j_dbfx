@@ -1,5 +1,7 @@
 CHANGELOG j_dbfx:
 
+251119:
+	RS: added prepSQL, runSQLQuery (to simplify select methods).
 251103:
 	Deleted RSwithUpsert, TYPUpsertCounts. Made working on HJRMSFX more complicated.
 	Deprecated use of cu.jsoft.j_dbfx.RSwithUpsert, cu.jsoft.j_dbfx.TYPUpsertCounts.
