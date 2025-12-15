@@ -1,5 +1,7 @@
 CHANGELOG j_dbfx:
 
+251215:
+	RS: declared variable String dbName.
 251119:
 	RS: added prepSQL, runSQLQuery (to simplify select methods).
 251103:
