@@ -1,5 +1,8 @@
 CHANGELOG j_dbfx:
 
+251221:
+	RS: implemented getter/setter for dbTablename.
+	RS: renamed dbTable as dbTableFull, dbName as dbTableName.
 251215:
 	RS: declared variable String dbName.
 251119:

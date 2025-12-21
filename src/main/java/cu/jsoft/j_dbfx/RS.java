@@ -21,8 +21,8 @@ import java.util.HashMap;
  */
 public abstract class RS {
 //<editor-fold defaultstate="collapsed" desc=" My class-level variables declaration ">
-	protected String dbTable;
-	protected String dbName;
+	protected String dbTableFull;
+	protected String dbTableName;
 	protected DBConnectionHandler DBConnHandler;
 	protected Connection MyConn;
 	protected int my_ID;
@@ -92,7 +92,7 @@ public abstract class RS {
 	public int Count(String SQL, String dbTable) throws SQLException {
 		SQL = SQL.replaceFirst("DBTABLE", dbTable);
 		PreparedStatement pstmt = getMyConn().prepareStatement(SQL);
-		//pstmt.setString(1, dbTable);
+		//pstmt.setString(1, dbTableFull);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()){
 			return rs.getInt(1);
@@ -242,7 +242,7 @@ public abstract class RS {
 	public abstract boolean updateRow(Object MyRow, Object WhereParam) throws SQLException;
 
 	public int deleteRowBySingleField(String byField, String sIdent) throws SQLException {
-		String QuerySQL = "DELETE FROM " + dbTable + " WHERE " + byField + " = " + sIdent + ";";
+		String QuerySQL = "DELETE FROM " + dbTableFull + " WHERE " + byField + " = " + sIdent + ";";
 		PreparedStatement pstmt = getMyConn().prepareStatement(QuerySQL);
 		return pstmt.executeUpdate();
 	}
@@ -289,17 +289,31 @@ public abstract class RS {
 	}
 
 	/**
-	 * @return the dbTable
+	 * @return the dbTableFull
 	 */
-	public String getDbTable() {
-		return dbTable;
+	public String getDbTableFull() {
+		return dbTableFull;
 	}
 
 	/**
-	 * @param dbTable the dbTable to set
+	 * @param dbTableFull the dbTableFull to set
 	 */
-	public void setDbTable(String dbTable) {
-		this.dbTable = dbTable;
+	public void setDbTableFull(String dbTableFull) {
+		this.dbTableFull = dbTableFull;
+	}
+
+	/**
+	 * @return the dbTableName
+	 */
+	public String getDbTableName() {
+		return dbTableName;
+	}
+
+	/**
+	 * @param dbTableName the dbTableName to set
+	 */
+	public void setDbTableName(String dbTableName) {
+		this.dbTableName = dbTableName;
 	}
 
 }

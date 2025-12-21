@@ -12,7 +12,7 @@ public class LibInfo {
 	// Lib constants:
 	private static final String TITLE = "j_dbfx";
 	private static final String VERSION = "1.0.14";
-	private static final String BUILD = "251215.01";
+	private static final String BUILD = "251221.01";
 
 
 
