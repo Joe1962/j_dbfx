@@ -5,6 +5,7 @@ TODO j_dbfx-lite:
 *******************************************************
 
 PRIORITY HIGH:
+	SQLx error message can be too long, check to truncate before popup.
 	Review and simplify RS.
 	SQLx.handleExceptionPG: outputs the caller class and line number, not where the exception really ocurred.
 
