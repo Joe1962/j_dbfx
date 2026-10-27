@@ -1,5 +1,9 @@
 CHANGELOG j_dbfx:
 
+261027
+	Added package global with classes FLAGS, GLOBAL.
+	Added TYP_FieldValuePair.
+	Implemented RS_new based on RS from faosalva_backend.
 251221:
 	RS: implemented getter/setter for dbTablename.
 	RS: renamed dbTable as dbTableFull, dbName as dbTableName.

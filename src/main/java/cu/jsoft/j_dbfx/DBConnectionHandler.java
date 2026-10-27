@@ -7,8 +7,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import cu.jsoft.j_dbfx.types.TYP_DBStructCheck;
-import static cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications.echoClassMethodComment;
-import static cu.jsoft.j_utilsfx.subs.SUB_UtilsNotifications.echoln;
+import static cu.jsoft.j_utilsfx.utils.SUB_UtilsNotifications.echoClassMethodComment;
+import static cu.jsoft.j_utilsfx.utils.SUB_UtilsNotifications.echoln;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -43,11 +43,19 @@ public class DBConnectionHandler {
 	 * @param MyDBPass
 	 * @throws SQLException
 	 */
-	public void dbConnectServer(String MyDBConnType, String MyDBDriver, String MyDBPath, String MyDBServer, int MyDBPort, String MyDBName, String MyDBUser, String MyDBPass) throws SQLException {
+	public void dbConnectServer(
+		String MyDBConnType,
+		String MyDBDriver,
+		String MyDBPath,
+		String MyDBServer,
+		int MyDBPort,
+		String MyDBName,
+		String MyDBUser,
+		String MyDBPass) throws SQLException {
+
 		if (null == MyDBDriver) {
-			
+			// TODO: ???
 		} else {
-			
 			// Connect to the database server:
 			switch (MyDBDriver) {
 				case "postgresql":
