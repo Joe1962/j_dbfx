@@ -1,6 +1,7 @@
 CHANGELOG j_dbfx:
 
 261027
+	Fixed project version (pom.xml) typo from 1.0,16 to 1.0.16.
 	Added package global with classes FLAGS, GLOBAL.
 	Added TYP_FieldValuePair.
 	Implemented RS_new based on RS from faosalva_backend.
